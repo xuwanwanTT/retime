@@ -1,0 +1,23 @@
+.homepage {
+  display: flex;
+}
+
+h1 {
+  text-align: center;
+}
+
+.over-one-day {
+  display: flex;
+  flex-direction: column;
+}
+
+.clock {
+  width: 500px;
+  height: 300px;
+  border: 5px dashed black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  font-size: 60px;
+}
