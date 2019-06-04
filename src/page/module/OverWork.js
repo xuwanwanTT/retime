@@ -6,7 +6,7 @@ function getNowDate() {
   const year = date.getFullYear();
   const month = date.getMonth();
   const day = date.getDate();
-  const today = pad(month + 1) + '-' + day;
+  const today = pad(month + 1) + '-' + pad(day);
   return { date, year, month, day, today };
 }
 function pad(s) {
@@ -53,10 +53,15 @@ class OverWork extends React.Component {
         const reg = /(.+):(.+)/;
         if (reg.test(time)) {
           time = time.split(':');
-          me.goWorkTime = new Date(year, month, day, time[0], time[1], 0);
-          // me.timer = setInterval(() => {
-          //   me.clock();
-          // }, 1000);
+          let goWorkTime = new Date(year, month, day, time[0], time[1], 0);
+          const earlyTime = new Date(year, month, day, 8, 30, 0);
+          const lateTime = new Date(year, month, day, 9, 0, 0);
+          if (goWorkTime > lateTime) {
+            goWorkTime = lateTime;
+          } else if (goWorkTime < earlyTime) {
+            goWorkTime = earlyTime;
+          }
+          me.goWorkTime = goWorkTime;
           me.animate();
         }
       });
